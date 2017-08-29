@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.boaglio.casadocodigo.greendogdelivery.domain.Cliente;
@@ -13,8 +14,7 @@ import com.boaglio.casadocodigo.greendogdelivery.domain.Pedido;
 import com.boaglio.casadocodigo.greendogdelivery.repository.ClienteRepository;
 
 @Component
-public class RepositoryTest
-// implements ApplicationRunner
+public class RepositoryTest implements ApplicationRunner
 {
 
 	private static final long ID_CLIENTE_FERNANDO = 11l;
