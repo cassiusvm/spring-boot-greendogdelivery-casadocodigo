@@ -8,15 +8,16 @@ public class RespostaDTO {
 
 	private String mensagem;
 
-	public RespostaDTO(Long pedido,Double valorTotal,String mensagem) {
+	public RespostaDTO(Long pedido, Double valorTotal, String mensagem) {
 		super();
 		this.pedido = pedido;
 		this.valorTotal = valorTotal;
 		this.mensagem = mensagem;
 	}
 
-	public RespostaDTO() {}
-	
+	public RespostaDTO() {
+	}
+
 	public Double getValorTotal() {
 		return valorTotal;
 	}
@@ -45,9 +46,9 @@ public class RespostaDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ( (mensagem == null) ? 0 : mensagem.hashCode());
-		result = prime * result + ( (pedido == null) ? 0 : pedido.hashCode());
-		result = prime * result + ( (valorTotal == null) ? 0 : valorTotal.hashCode());
+		result = prime * result + ((mensagem == null) ? 0 : mensagem.hashCode());
+		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
+		result = prime * result + ((valorTotal == null) ? 0 : valorTotal.hashCode());
 		return result;
 	}
 

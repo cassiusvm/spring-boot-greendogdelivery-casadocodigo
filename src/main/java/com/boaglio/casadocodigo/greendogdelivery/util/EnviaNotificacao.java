@@ -10,27 +10,26 @@ import com.boaglio.casadocodigo.greendogdelivery.dto.Notificacao;
 @Component
 public class EnviaNotificacao {
 
-    @Autowired
-    Notificacao  notificacao;
-    
-	public void enviaEmail(Cliente cliente,Pedido pedido) {
-		
-		System.out.println("Enviar notificacao para "+cliente.getNome() + " - pedido $"+pedido.getValorTotal());
-		
+	@Autowired
+	Notificacao notificacao;
+
+	public void enviaEmail(Cliente cliente, Pedido pedido) {
+
+		System.out.println("Enviar notificacao para " + cliente.getNome() + " - pedido $" + pedido.getValorTotal());
+
 		if (notificacao.envioAtivo()) {
-			
+
 			/*
-			     codigo de envio
+			 * codigo de envio
 			 */
-			
+
 			System.out.println("Notificacao enviada!");
-			
+
 		} else {
-			
+
 			System.out.println("Notificacao desligada!");
-		
+
 		}
 	}
-	
-	
+
 }

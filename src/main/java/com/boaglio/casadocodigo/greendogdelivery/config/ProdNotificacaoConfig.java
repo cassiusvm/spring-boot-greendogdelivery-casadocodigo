@@ -13,5 +13,5 @@ public class ProdNotificacaoConfig implements Notificacao {
 	public boolean envioAtivo() {
 		return true;
 	}
- 
+
 }

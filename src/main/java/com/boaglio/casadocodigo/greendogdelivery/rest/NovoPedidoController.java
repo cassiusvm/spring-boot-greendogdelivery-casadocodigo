@@ -18,14 +18,14 @@ import com.boaglio.casadocodigo.greendogdelivery.repository.ClienteRepository;
 import com.boaglio.casadocodigo.greendogdelivery.repository.ItemRepository;
 import com.boaglio.casadocodigo.greendogdelivery.util.EnviaNotificacao;
 
-@RestController 
+@RestController
 public class NovoPedidoController {
 
-	
 	@Autowired
-	public NovoPedidoController(ClienteRepository clienteRepository,ItemRepository itemRepository,EnviaNotificacao enviaNotificacao) {
-		this.clienteRepository =clienteRepository;
-		this.itemRepository=itemRepository;
+	public NovoPedidoController(ClienteRepository clienteRepository, ItemRepository itemRepository,
+			EnviaNotificacao enviaNotificacao) {
+		this.clienteRepository = clienteRepository;
+		this.itemRepository = itemRepository;
 		this.enviaNotificacao = enviaNotificacao;
 	}
 
@@ -34,7 +34,8 @@ public class NovoPedidoController {
 	private final EnviaNotificacao enviaNotificacao;
 
 	@GetMapping("/rest/pedido/novo/{clienteId}/{listaDeItens}")
-	public RespostaDTO novo(@PathVariable("clienteId") Long clienteId,@PathVariable("listaDeItens") String listaDeItens) {
+	public RespostaDTO novo(@PathVariable("clienteId") Long clienteId,
+			@PathVariable("listaDeItens") String listaDeItens) {
 
 		RespostaDTO dto = new RespostaDTO();
 
@@ -60,9 +61,9 @@ public class NovoPedidoController {
 			c.getPedidos().add(pedido);
 
 			this.clienteRepository.saveAndFlush(c);
-			
-			enviaNotificacao.enviaEmail(c,pedido);
-			
+
+			enviaNotificacao.enviaEmail(c, pedido);
+
 			List<Long> pedidosID = new ArrayList<Long>();
 			for (Pedido p : c.getPedidos()) {
 				pedidosID.add(p.getId());
@@ -70,7 +71,7 @@ public class NovoPedidoController {
 
 			Long ultimoPedido = Collections.max(pedidosID);
 
-			dto = new RespostaDTO(ultimoPedido,valorTotal,"Pedido efetuado com sucesso");
+			dto = new RespostaDTO(ultimoPedido, valorTotal, "Pedido efetuado com sucesso");
 
 		} catch (Exception e) {
 			dto.setMensagem("Erro: " + e.getMessage());

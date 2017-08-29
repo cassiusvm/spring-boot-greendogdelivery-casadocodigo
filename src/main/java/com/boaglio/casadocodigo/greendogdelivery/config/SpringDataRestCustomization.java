@@ -8,12 +8,10 @@ import com.boaglio.casadocodigo.greendogdelivery.domain.Item;
 import com.boaglio.casadocodigo.greendogdelivery.repository.ClienteRepository;
 
 @Component
-public class SpringDataRestCustomization 
-extends RepositoryRestConfigurerAdapter 
-{
+public class SpringDataRestCustomization extends RepositoryRestConfigurerAdapter {
 
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		config.exposeIdsFor(Item.class,ClienteRepository.class);
+		config.exposeIdsFor(Item.class, ClienteRepository.class);
 	}
 }

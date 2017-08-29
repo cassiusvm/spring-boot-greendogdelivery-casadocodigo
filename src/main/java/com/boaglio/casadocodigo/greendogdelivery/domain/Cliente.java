@@ -19,29 +19,30 @@ import org.hibernate.validator.constraints.Length;
 public class Cliente {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @NotNull
-    @Length(min=2, max=30,message="O tamanho do nome deve ser entre {min} e {max} caracteres")
+	@NotNull
+	@Length(min = 2, max = 30, message = "O tamanho do nome deve ser entre {min} e {max} caracteres")
 	private String nome;
 
-    @NotNull
-    @Length(min=2, max=300,message="O tamanho do endereço deve ser entre {min} e {max} caracteres")
+	@NotNull
+	@Length(min = 2, max = 300, message = "O tamanho do endereço deve ser entre {min} e {max} caracteres")
 	private String endereco;
-	
-	@OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
 	@Cascade(CascadeType.ALL)
 	private List<Pedido> pedidos;
 
-	public Cliente(Long id,String nome,String endereco) {
+	public Cliente(Long id, String nome, String endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 	}
 
-	public Cliente() {}
+	public Cliente() {
+	}
 
 	public Long getId() {
 		return id;
@@ -66,21 +67,21 @@ public class Cliente {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 
 	}
 
 	public void novoPedido(Pedido pedido) {
-		
-		if (this.pedidos==null) pedidos = new ArrayList<Pedido>();
-		
+
+		if (this.pedidos == null)
+			pedidos = new ArrayList<Pedido>();
+
 		pedidos.add(pedido);
-		
+
 	}
 
-	
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
@@ -94,7 +95,7 @@ public class Cliente {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ( (id == null) ? 0 : id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 

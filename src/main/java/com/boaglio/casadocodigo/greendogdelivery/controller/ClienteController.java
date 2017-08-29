@@ -30,12 +30,12 @@ public class ClienteController {
 	@GetMapping("/")
 	public ModelAndView list() {
 		Iterable<Cliente> clientes = this.clienteRepository.findAll();
-		return new ModelAndView(CLIENTE_URI + "list","clientes",clientes);
+		return new ModelAndView(CLIENTE_URI + "list", "clientes", clientes);
 	}
 
 	@GetMapping("{id}")
 	public ModelAndView view(@PathVariable("id") Cliente cliente) {
-		return new ModelAndView(CLIENTE_URI + "view","cliente",cliente);
+		return new ModelAndView(CLIENTE_URI + "view", "cliente", cliente);
 	}
 
 	@GetMapping("/novo")
@@ -44,27 +44,29 @@ public class ClienteController {
 	}
 
 	@PostMapping(params = "form")
-	public ModelAndView create(@Valid Cliente cliente,BindingResult result,RedirectAttributes redirect) {
-		if (result.hasErrors()) { return new ModelAndView(CLIENTE_URI + "form","formErrors",result.getAllErrors()); }
+	public ModelAndView create(@Valid Cliente cliente, BindingResult result, RedirectAttributes redirect) {
+		if (result.hasErrors()) {
+			return new ModelAndView(CLIENTE_URI + "form", "formErrors", result.getAllErrors());
+		}
 		cliente = this.clienteRepository.save(cliente);
-		redirect.addFlashAttribute("globalMessage","Cliente gravado com sucesso");
-		return new ModelAndView("redirect:/" + CLIENTE_URI + "{cliente.id}","cliente.id",cliente.getId());
+		redirect.addFlashAttribute("globalMessage", "Cliente gravado com sucesso");
+		return new ModelAndView("redirect:/" + CLIENTE_URI + "{cliente.id}", "cliente.id", cliente.getId());
 	}
 
 	@GetMapping(value = "remover/{id}")
-	public ModelAndView remover(@PathVariable("id") Long id,RedirectAttributes redirect) {
+	public ModelAndView remover(@PathVariable("id") Long id, RedirectAttributes redirect) {
 		this.clienteRepository.delete(id);
 		Iterable<Cliente> clientes = this.clienteRepository.findAll();
-		
-		ModelAndView mv = new ModelAndView(CLIENTE_URI + "list","clientes",clientes);
-		mv.addObject("globalMessage","Cliente removido com sucesso");
-	
+
+		ModelAndView mv = new ModelAndView(CLIENTE_URI + "list", "clientes", clientes);
+		mv.addObject("globalMessage", "Cliente removido com sucesso");
+
 		return mv;
 	}
 
 	@GetMapping(value = "alterar/{id}")
 	public ModelAndView alterarForm(@PathVariable("id") Cliente cliente) {
-		return new ModelAndView(CLIENTE_URI + "form","cliente",cliente);
+		return new ModelAndView(CLIENTE_URI + "form", "cliente", cliente);
 	}
 
 }
